@@ -54,9 +54,9 @@ class HotelPredictionModel:
     
     def one_hot_encode_column(self):
         for col in self.categorical_columns:
-            self.ohe_encoders[col] = OneHotEncoder()
-            train_encoded = self.ohe_encoders[col].fit_transform(self.x_train[[col]]).toarray()
-            test_encoded = self.ohe_encoders[col].transform(self.x_test[[col]]).toarray()
+            self.ohe_encoders[col] = OneHotEncoder(sparse_output=False)
+            train_encoded = self.ohe_encoders[col].fit_transform(self.x_train[[col]])
+            test_encoded = self.ohe_encoders[col].transform(self.x_test[[col]])
 
             col_names = [f'{col}_{cat}' for cat in self.ohe_encoders[col].categories_[0]]
 
@@ -168,7 +168,7 @@ class HotelPredictionModel:
         preprocess_data = self.cyclic_encoding(new_data)
         preprocess_data[self.num_columns] = self.scaler.transform(preprocess_data[self.num_columns])
         for col in self.categorical_columns:
-            test_encoded = self.ohe_encoders[col].transform(preprocess_data[[col]]).toarray()
+            test_encoded = self.ohe_encoders[col].transform(preprocess_data[[col]])
             col_names = [f'{col}_{cat}' for cat in self.ohe_encoders[col].categories_[0]]
             test_ohe_df = pd.DataFrame(test_encoded, columns=col_names, index=preprocess_data.index)
             preprocess_data = pd.concat([preprocess_data.drop(columns=[col]), test_ohe_df], axis=1)
