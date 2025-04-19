@@ -1,7 +1,12 @@
 import pandas as pd
 from model import HotelPredictionModel
+import cloudpickle
 
-model = HotelPredictionModel.load_model('model.pkl')
+
+model_without_cloud = HotelPredictionModel.load_model('model_without_cloud.pkl')
+
+with open('model_with_cloud.pkl', 'rb') as f:
+    model_with_cloud = cloudpickle.load(f)
 
 inference_data = pd.DataFrame([{
     'Booking_ID': 'INN06348',
@@ -24,7 +29,12 @@ inference_data = pd.DataFrame([{
     'no_of_special_requests': 2,
 }])
 
+# Without Cloud
+print("Without Cloud")
+predictions,labels = model_without_cloud.predict(inference_data)
+print(predictions,labels)
 
-# print(model)
-predictions,labels = model.predict(inference_data)
+# With Cloud
+print("With Cloud")
+predictions,labels = model_with_cloud.predict(inference_data)
 print(predictions,labels)

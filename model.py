@@ -8,7 +8,7 @@ from sklearn.preprocessing import OneHotEncoder, LabelEncoder
 import pickle
 import matplotlib.pyplot as plt
 import seaborn as sns
-
+import cloudpickle
 
 class HotelPredictionModel:
     def __init__(self):
@@ -134,7 +134,7 @@ class HotelPredictionModel:
             'confusion_matrix': cm
         }
     
-    def save_model(self, filename = 'model.pkl'):
+    def save_model(self, filename = 'model.pkl',cloud = False):
         model_data = {
             'model': self.model,
             'scaler': self.scaler,
@@ -145,14 +145,26 @@ class HotelPredictionModel:
             'all_columns' : self.x_train.columns
         }
         
-        with open(filename, 'wb') as f:
-            pickle.dump(model_data, f)
+        if cloud:
+            with open(filename, 'wb') as f:
+                cloudpickle.dump(self, f)
+        else:
+            with open(filename, 'wb') as f:
+                pickle.dump(model_data, f)
+            
         return
+        
     
     @classmethod
-    def load_model(cls, filename = 'model.pkl'):
-        with open(filename, 'rb') as file:
-            model_data = pickle.load(file)
+    def load_model(cls, filename = 'model.pkl',cloud = False):
+        if cloud:
+            with open(filename, 'rb') as file:
+                model = cloudpickle.load(file)
+                return model
+        else:
+            with open(filename, 'rb') as file:
+                model_data = pickle.load(file)
+            
         predictor = cls()
         predictor.model = model_data['model']
         predictor.scaler = model_data['scaler']
@@ -202,13 +214,29 @@ if __name__ == "__main__":
     model.preprocess_data()
     model.train_model()
     model.evaluate_model()
-    model.save_model()
+    model.save_model(filename='model_without_cloud.pkl',cloud = False)
+    model.save_model(filename='model_with_cloud.pkl',cloud = True)
 
-    # Use Saved Model
-    model = HotelPredictionModel.load_model('model.pkl')
     # Prediction 
     new_data = pd.read_csv('Dataset_B_hotel.csv').dropna().head(1) # As Testing Data
     preds, labels = model.predict(new_data)
+    print("Use Trained Model")
+    print(preds)
+    print(labels)
+    # Use Saved Model (Cloud)
+    print("Use Saved Model")
+    model_with_cloud = HotelPredictionModel.load_model('model_with_cloud.pkl',cloud=True)
+    new_data = pd.read_csv('Dataset_B_hotel.csv').dropna().head(1) # As Testing Data
+    preds, labels = model_with_cloud.predict(new_data)
+    print("With Cloud")
+    print(preds)
+    print(labels)
+
+    # Use Saved Model (Without Cloud)
+    model_without_cloud = HotelPredictionModel.load_model('model_without_cloud.pkl',cloud=False)
+    new_data = pd.read_csv('Dataset_B_hotel.csv').dropna().head(1) # As Testing Data
+    preds, labels = model_without_cloud.predict(new_data)
+    print("Without Cloud")
     print(preds)
     print(labels)
 
