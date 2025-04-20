@@ -47,7 +47,7 @@ The dataset includes the following features:
 ### Create and Activate Conda Environment
 
 ```bash
-conda create --name mlops python=3.11.11
+conda create --name mlops python=3.11
 
 conda activate mlops
 
@@ -56,6 +56,8 @@ pip install -r requirements.txt
 python model.py # for training model and export model
 
 python inference.py # for prediction
+
+streamlit run streamlit.py #to run streamlit locally
 ```
 
 ### Note : To Update requirements.txt
