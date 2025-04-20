@@ -28,25 +28,25 @@ The dataset includes the following features:
 
 | Column | Description |
 |--------|-------------|
-| `Booking_ID` | Unique ID of the booking |
+| `Booking_ID` | Unique identifier for each booking |
 | `no_of_adults` | Number of adults |
 | `no_of_children` | Number of children |
-| `no_of_weekend_nights` | Weekend nights booked |
-| `no_of_week_nights` | Weekday nights booked |
-| `type_of_meal_plan` | Type of meal plan selected |
-| `required_car_parking_space` | Parking required? (0/1) |
-| `room_type_reserved` | Encrypted room type |
-| `lead_time` | Days before arrival when booking was made |
+| `no_of_weekend_nights` | Number of weekend nights (Saturday or Sunday) stayed or booked |
+| `no_of_week_nights` | Number of weekday nights (Monday to Friday) stayed or booked |
+| `type_of_meal_plan` | Type of meal plan selected by the customer |
+| `required_car_parking_space` | Whether parking space was required (0 = No, 1 = Yes) |
+| `room_type_reserved` | Type of room reserved (values are encrypted by INN Hotels) |
+| `lead_time` | Number of days between booking and arrival date |
 | `arrival_year` | Year of arrival |
 | `arrival_month` | Month of arrival |
 | `arrival_date` | Date of arrival |
-| `market_segment_type` | Market segment |
-| `repeated_guest` | Is the guest a repeater? (0/1) |
-| `no_of_previous_cancellations` | Previous cancellations |
-| `no_of_previous_bookings_not_canceled` | Previous successful bookings |
-| `avg_price_per_room` | Average daily room price (euro) |
-| `no_of_special_requests` | Number of special requests |
-| `booking_status` | **Target** - Booking canceled or not |
+| `market_segment_type` | Designation of the market segment |
+| `repeated_guest` | Whether the customer is a returning guest (0 = No, 1 = Yes) |
+| `no_of_previous_cancellations` | Number of previous bookings that were canceled |
+| `no_of_previous_bookings_not_canceled` | Number of previous bookings not canceled |
+| `avg_price_per_room` | Average per-day price for the booking (in euros) |
+| `no_of_special_requests` | Total number of special requests made by the customer (e.g., high floor, room with a view) |
+| `booking_status` | **Target variable** – Indicates whether the booking was canceled or not |
 
 ### Create and Activate Conda Environment
 
