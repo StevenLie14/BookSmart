@@ -6,6 +6,10 @@
 - **NIM:** 2702265370
 - **Class:** LA09
 
+### Streamlit Demo
+🔗 **Live App:** [https://uts-model-deployment-s7nfqq2xsjvcr3yqml22zx.streamlit.app](https://uts-model-deployment-s7nfqq2xsjvcr3yqml22zx.streamlit.app)  
+*Note: This link may expire or become inactive over time.*
+
 ## ⚙️ Prerequisites
 - [Anaconda](https://www.anaconda.com/products/distribution) or [Miniconda](https://docs.conda.io/en/latest/miniconda.html) installed
 - **Python version:** `3.11.11` (recommended)
