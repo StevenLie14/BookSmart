@@ -5,7 +5,9 @@
 - **Name:** Steven Liementha
 - **NIM:** 2702265370
 - **Class:** LA09
-- **Video Link:** [https://binusianorg-my.sharepoint.com/personal/steven_liementha_binus_edu/_layouts/15/guestaccess.aspx?share=EmMxAwP_XW5Ov2YazTS6ptgBujE0XQCz3bZYDUIV2q-N4w&e=qxGGwh](https://binusianorg-my.sharepoint.com/personal/steven_liementha_binus_edu/_layouts/15/guestaccess.aspx?share=EmMxAwP_XW5Ov2YazTS6ptgBujE0XQCz3bZYDUIV2q-N4w&e=qxGGwh)
+- **Video Link:** 
+- [https://binusianorg-my.sharepoint.com/personal/steven_liementha_binus_edu/_layouts/15/guestaccess.aspx?share=EmMxAwP_XW5Ov2YazTS6ptgBujE0XQCz3bZYDUIV2q-N4w&e=qxGGwh](https://binusianorg-my.sharepoint.com/personal/steven_liementha_binus_edu/_layouts/15/guestaccess.aspx?share=EmMxAwP_XW5Ov2YazTS6ptgBujE0XQCz3bZYDUIV2q-N4w&e=qxGGwh) -> OneDrive
+- [https://youtu.be/92B-bxRcdAw](https://youtu.be/92B-bxRcdAw) -> Youtube
 
 ### Streamlit Demo
 🔗 **Live App:** [https://uts-model-deployment-c3al9wrtdffhybhstcmepr.streamlit.app](https://uts-model-deployment-c3al9wrtdffhybhstcmepr.streamlit.app)  
