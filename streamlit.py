@@ -213,14 +213,14 @@ elif page == "Test Cases":
         
         test_case_1 = {
             "booking_id": "INN00101",
-            "no_of_adults": 2,
-            "no_of_children": 4,
-            "no_of_weekend_nights": 4,
-            "no_of_week_nights": 3,
+            "no_of_adults": 4,
+            "no_of_children": 8,
+            "no_of_weekend_nights": 8,
+            "no_of_week_nights": 4,
             "type_of_meal_plan": "Meal Plan 3",
             "required_car_parking_space": 0,
             "room_type_reserved": "Room_Type 1",
-            "lead_time": 225,
+            "lead_time": 325,
             "arrival_year": 2017,
             "arrival_month": 1,
             "arrival_date": 20,
@@ -229,7 +229,7 @@ elif page == "Test Cases":
             "no_of_previous_cancellations": 0,
             "no_of_previous_bookings_not_canceled": 0,
             "no_of_special_requests": 0,
-            "avg_price_per_room": 105.75
+            "avg_price_per_room": 505.75
         }
         
         df_test_1 = pd.DataFrame([test_case_1])
@@ -269,7 +269,7 @@ elif page == "Test Cases":
             "type_of_meal_plan": "Meal Plan 2",
             "required_car_parking_space": 1,
             "room_type_reserved": "Room_Type 1",
-            "lead_time": 12,
+            "lead_time": 40,
             "arrival_year": 2018,
             "arrival_month": 4,
             "arrival_date": 10,
@@ -288,8 +288,8 @@ elif page == "Test Cases":
             with st.spinner("Making prediction..."):
                 if model_loaded:
                     try:
-                        _, labels1 = model_with_cloud.predict(df_test_1)
-                        _, labels2 = model_without_cloud.predict(df_test_1)
+                        _, labels1 = model_with_cloud.predict(df_test_2)
+                        _, labels2 = model_without_cloud.predict(df_test_2)
                         
                         st.subheader("Prediction Results")
 

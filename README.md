@@ -7,7 +7,7 @@
 - **Class:** LA09
 
 ### Streamlit Demo
-🔗 **Live App:** [https://uts-model-deployment-s7nfqq2xsjvcr3yqml22zx.streamlit.app](https://uts-model-deployment-s7nfqq2xsjvcr3yqml22zx.streamlit.app)  
+🔗 **Live App:** [https://uts-model-deployment-c3al9wrtdffhybhstcmepr.streamlit.app](https://uts-model-deployment-c3al9wrtdffhybhstcmepr.streamlit.app)  
 *Note: This link may expire or become inactive over time.*
 
 ## ⚙️ Prerequisites
