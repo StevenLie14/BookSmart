@@ -1,14 +1,14 @@
 import numpy as np
 import pandas as pd
-from sklearn.preprocessing import RobustScaler
 from sklearn.model_selection import train_test_split
-from xgboost import XGBClassifier
 from sklearn.metrics import classification_report, accuracy_score, recall_score, f1_score, precision_score, confusion_matrix
-from sklearn.preprocessing import OneHotEncoder, LabelEncoder
+from sklearn.preprocessing import OneHotEncoder, LabelEncoder, RobustScaler
 import pickle
 import matplotlib.pyplot as plt
 import seaborn as sns
 import cloudpickle
+from sklearn.ensemble import RandomForestClassifier
+
 
 class HotelPredictionModel:
     def __init__(self):
@@ -92,7 +92,7 @@ class HotelPredictionModel:
 
     def train_model(self):
         print("Training Model")
-        self.model = XGBClassifier(learning_rate = 0.2, max_depth = 6, n_estimators = 100, random_state = 42)
+        self.model = RandomForestClassifier(min_samples_split = 2, max_depth = None, n_estimators = 100, random_state = 42)
         self.model.fit(self.x_train, self.y_train)
         print("Training Model Done")
         return self.model
@@ -105,7 +105,6 @@ class HotelPredictionModel:
         recall = recall_score(self.y_test, y_pred)
         f1 = f1_score(self.y_test, y_pred)
         cm = confusion_matrix(self.y_test, y_pred)
-        # Print metrics
         print("\nModel Evaluation Metrics:")
         print(f"Accuracy: {accuracy:.4f}")
         print(f"Precision: {precision:.4f}")

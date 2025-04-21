@@ -4,6 +4,7 @@ import numpy as np
 from datetime import date
 import random
 import cloudpickle
+from model import HotelPredictionModel
 
 st.set_page_config(
     page_title="Hotel Booking System ",
@@ -13,11 +14,13 @@ st.set_page_config(
 
 @st.cache_resource
 def load_model():
+    model_without_cloud = HotelPredictionModel.load_model('model_without_cloud.pkl')
     with open('model_with_cloud.pkl', 'rb') as f:
-        return cloudpickle.load(f)
+        model_with_cloud = cloudpickle.load(f)
+    return model_with_cloud, model_without_cloud
 
 try:
-    model = load_model()
+    model_with_cloud, model_without_cloud = load_model()
     model_loaded = True
 except Exception as e:
     st.error(f"Error loading model: {e}")
@@ -183,13 +186,20 @@ if page == "New Booking":
             
             if model_loaded:
                 try:
-                    _, labels = model.predict(df)
+                    _, labels1 = model_with_cloud.predict(df)
+                    _, labels2 = model_without_cloud.predict(df)
                     
                     st.subheader("Prediction Results")
-                    if labels[0] == "Canceled":
-                        st.error(f"This booking is predicted to be **{labels[0]}**")
+
+                    if labels1[0] == "Canceled":
+                        st.error(f"[With Cloud] This booking is predicted to be **{labels1[0]}**")
                     else:
-                        st.success(f"This booking is predicted to be **{labels[0]}**")
+                        st.success(f"[With Cloud] This booking is predicted to be **{labels1[0]}**")
+
+                    if labels2[0] == "Canceled":
+                        st.error(f"[Without Cloud] This booking is predicted to be **{labels2[0]}**")
+                    else:
+                        st.success(f"[Without Cloud] This booking is predicted to be **{labels2[0]}**")
                 except Exception as e:
                     st.error(f"Error making prediction: {e}")
             else:
@@ -229,12 +239,20 @@ elif page == "Test Cases":
             with st.spinner("Making prediction..."):
                 if model_loaded:
                     try:
-                        _, labels = model.predict(df_test_1)
+                        _, labels1 = model_with_cloud.predict(df_test_1)
+                        _, labels2 = model_without_cloud.predict(df_test_1)
                         
-                        if labels[0] == "Canceled":
-                            st.error(f"Prediction: This booking is likely to be **{labels[0]}**")
+                        st.subheader("Prediction Results")
+
+                        if labels1[0] == "Canceled":
+                            st.error(f"[With Cloud] This booking is predicted to be **{labels1[0]}**")
                         else:
-                            st.success(f"Prediction: This booking is likely to be **{labels[0]}**")
+                            st.success(f"[With Cloud] This booking is predicted to be **{labels1[0]}**")
+
+                        if labels2[0] == "Canceled":
+                            st.error(f"[Without Cloud] This booking is predicted to be **{labels2[0]}**")
+                        else:
+                            st.success(f"[Without Cloud] This booking is predicted to be **{labels2[0]}**")
                     except Exception as e:
                         st.error(f"Error making prediction: {e}")
                 else:
@@ -270,11 +288,20 @@ elif page == "Test Cases":
             with st.spinner("Making prediction..."):
                 if model_loaded:
                     try:
-                        _, labels = model.predict(df_test_2)
-                        if labels[0] == "Canceled":
-                            st.error(f"Prediction: This booking is likely to be **{labels[0]}**")
+                        _, labels1 = model_with_cloud.predict(df_test_1)
+                        _, labels2 = model_without_cloud.predict(df_test_1)
+                        
+                        st.subheader("Prediction Results")
+
+                        if labels1[0] == "Canceled":
+                            st.error(f"[With Cloud] This booking is predicted to be **{labels1[0]}**")
                         else:
-                            st.success(f"Prediction: This booking is likely to be **{labels[0]}**")
+                            st.success(f"[With Cloud] This booking is predicted to be **{labels1[0]}**")
+
+                        if labels2[0] == "Canceled":
+                            st.error(f"[Without Cloud] This booking is predicted to be **{labels2[0]}**")
+                        else:
+                            st.success(f"[Without Cloud] This booking is predicted to be **{labels2[0]}**")
                     except Exception as e:
                         st.error(f"Error making prediction: {e}")
                 else:
