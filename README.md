@@ -1,5 +1,5 @@
 
-# 🏨 Hotel Booking Cancellation Classification – UTS Deployment
+# 🏨 Hotel Booking Cancellation Classification
 
 ## Student Info
 - **Name:** Steven Liementha
